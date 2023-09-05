@@ -1,0 +1,16 @@
+const express = require('express');
+const r = express.Router()
+const roomHandler = require('../routerHandler/room')
+const { searchValidator, initValidator } = require('../validators/room')
+r.post('/search', searchValidator, roomHandler.postSearch)
+r.post('/confirm-pair', searchValidator, roomHandler.postConfirmPair)
+r.delete('/cancel-search', searchValidator, roomHandler.postCancelSearch)
+r.post('/post-init', initValidator, roomHandler.postInit)
+r.get('/get-init', roomHandler.getInit)
+r.post('/get-init-new', searchValidator,roomHandler.getInit)
+r.post('/post-latest-gaming', roomHandler.postLatestGaming)
+r.post('/get-latest-gaming', searchValidator,roomHandler.getLatestGaming)
+r.post('/get-spStatus', searchValidator, roomHandler.getSpStatus)
+r.post('/post-spStatus', searchValidator, roomHandler.postSpStatus)
+r.post('/post-end-game', searchValidator, roomHandler.postEndGame)
+module.exports = r
